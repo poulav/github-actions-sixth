@@ -7,8 +7,15 @@ on:
         required: false
         type: string
         default: dist
+    outputs:
+      result:
+        description: Result of the reusable workflow
+        value: ${{ jobs.deploy.outputs.outcome }}
+      
 jobs: 
   deploy:
+    outputs:
+      outcome: ${{ steps.outcomeset.outputs.step-result }}
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -19,3 +26,6 @@ jobs:
         run: ls
       - name: Print Random
         run: echo 'This is from reusable workflow'
+      - name: Set outcome
+        id: outcomeset
+        run: echo "step-result=success" >> $GITHUB_OUTPUT
