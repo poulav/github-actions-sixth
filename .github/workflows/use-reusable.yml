@@ -46,7 +46,7 @@ jobs:
           path: test.json
   build:
     needs: test
-    uses: ./.github/workflows/reusable.yml
+    uses: ./.github/workflows/reusable.yaml
   deploy:
     needs: build
     runs-on: ubuntu-latest
