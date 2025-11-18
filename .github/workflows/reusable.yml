@@ -26,6 +26,6 @@ jobs:
         run: ls
       - name: Print Random
         run: echo 'This is from reusable workflow'
-      - name: Set outcome
+      - name: Set result output
         id: outcomeset
-        run: echo "step-result=success" >> $GITHUB_OUTPUT
+        run: echo step-result=success >> $GITHUB_OUTPUT
