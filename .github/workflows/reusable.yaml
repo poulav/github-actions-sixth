@@ -1,8 +1,21 @@
 name: Reusable workflow
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      artifact-name:
+        description: Name of the artifact to download
+        required: false
+        type: string
+        default: dist
 jobs: 
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Get code
+        uses: actions/checkout@v5
+        with: 
+          name: ${{ inputs.artifact-name }}
+      - name: List Files
+        run: ls
       - name: Print Random
         run: echo 'This is from reusable workflow'
